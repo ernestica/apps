@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Ballon Head</title>
+<title>The Ballon Head</title>
 
 <!-- Welcome to ZIM at https://zimjs.com - Code Creativity!                              -->
 <!-- ZIM runs on the HTML Canvas powered by JavaScript and CreateJS https://createjs.com -->
@@ -29,8 +29,10 @@ const height = null;
 const color = green; // ZIM colors like green, blue, pink, faint, clear, etc.
 const outerColor = dark; // any HTML colors like "violet", "#333", etc. are fine to use
 
+const path = "assets/";
+const assets = ["ballon.png"];
 
-const frame = new Frame(scaling, width, height, color, outerColor);
+const frame = new Frame(scaling, width, height, color, outerColor, assets, path);
 frame.on("ready", () => { // ES6 Arrow Function - like function(){}
     zog("ready from ZIM Frame"); // logs in console (F12 - choose console)
 
@@ -44,16 +46,17 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
 
     // put your code here (you can delete this sample code)
     const page1 = new Container(stageW,stageH);
-    page1.backing = new Rectangle(page1.width, page1.height, pink).addTo(page1);
-    page1.triangle = new Triangle(160,160,160,white)
-        .rot(90)
-        .hov(1)
-        .rot(90)
-        .center(page1);
+    page1.backing = new Rectangle(page1.width, page1.height, white).addTo(page1);
+    const maintitle = asset('ballon.png').center(page1);
+    // page1.triangle = new Triangle(40,40,40,"#ff0092")
+    //     .rot(90)
+    //     .hov(1)
+    //     .rot(90)
+    //     .center(page1);
 
   
         
-    page1.triangle.on("mousedown", () => {
+   maintitle.on("mousedown", () => {
         // pages.go(page2, "right", "slide", 1000);
         pages.go(page2, "right");
     });
@@ -62,7 +65,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
     page2.backing = new Rectangle(page2.width, page2.height, light).addTo(page2);
 
     const content = new Container (stageW, stageH).addTo(page2); 
-    const layers = new Container(stageW,stageH).center(page2);
+    const layers = new Container(stageW,stageH-50).loc(0,50).center(page2);
 
     STYLE ={
         type:{
@@ -83,32 +86,27 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         }
     }
 
-  const head = new Layer(500, 500, "HEAD").pos(0,10,CENTER,BOTTOM,content);
-  new Blob({points:[[-11.7,-189.6,0,0,-133.8,3.7,133.8,-3.7,"mirror"],[32.6,7.3,0,0,90.2,-20.9,-40.8,31,"free"],[-10.9,59.5,0,0,34,2.5,-34,-2.5,"mirror"],[-63.2,8.4,0,0,39.8,9.1,-87.8,-47.6,"free"]], color:"#2ffd2f"}).center(head).sca(2.2); // or we could apply transform to scale head independently of Layer scale
-  new Blob({color:"#b7fe00", points:[[-11.7,-189.6,0,0,-133.8,3.7,133.8,-3.7,"mirror"],[32.6,7.3,0,0,90.2,-20.9,-40.8,31,"free"],[-10.9,59.5,0,0,34,2.5,-34,-2.5,"mirror"],[-63.2,8.4,0,0,39.8,9.1,-87.8,-47.6,"free"]]}).sca(2).pos(0,-40,CENTER,CENTER,head).transform({onTop:false, visible:false});
+  const head = new Layer(500, 500, "HEAD").pos(0,-50,CENTER,BOTTOM,page2.backing);
+  new Blob({points:[[-9.7,-178,0,0,-30,0.6,31.4,-0.6,"mirror"],[88.6,-112.8,0,0,-13.3,-44.4,13.3,44.4],[68.3,-16.8,0,0,18.9,-17.9,-14.4,13.7,"mirror"],[28.8,31.5,0,0,5.8,-14.7,-12.7,32.3],[-5.8,90.8,0,0,34.4,0,-31.2,0,"mirror"],[-37.3,37.7,0,0,10.5,27.7,-6.3,-16.6],[-83.4,-5.8,0,0,17.3,15.3,-20,-17.7,"mirror"],[-105.7,-111.9,0,0,-14.8,45.3,14.8,-45.3]], color:"#2ffd2f"}).pos(50,-20,CENTER,CENTER, head).sca(1.7); // or we could apply transform to scale head independently of Layer scale
+  new Blob({color:"#b7fe00", points:[[-9.7,-178,0,0,-30,0.6,31.4,-0.6,"mirror"],[88.6,-112.8,0,0,-13.3,-44.4,13.3,44.4],[68.3,-16.8,0,0,18.9,-17.9,-14.4,13.7,"mirror"],[28.8,31.5,0,0,5.8,-14.7,-12.7,32.3],[-5.8,90.8,0,0,34.4,0,-31.2,0,"mirror"],[-37.3,37.7,0,0,10.5,27.7,-6.3,-16.6],[-83.4,-5.8,0,0,17.3,15.3,-20,-17.7,"mirror"],[-105.7,-111.9,0,0,-14.8,45.3,14.8,-45.3]]}).sca(1.5).pos(50,-40,CENTER,CENTER,head).transform({onTop:false, visible:false});
 
   const eyes = new Layer(300,100,"EYES").pos(0,-150,CENTER,CENTER,head);
-  new Blob({borderColor:"#000000", borderWidth:4}).sca(1.5).pos(-120,-110, CENTER, CENTER, eyes);
-  new Blob({borderColor:"#000000", borderWidth:4}).sca(1.5).pos(100,-110, CENTER, CENTER, eyes);
-  new Blob({color:"#000000"}).sca(1.5).center(eyes).mov(-120,-130);
-  new Blob({color:"#000000"}).sca(3).center(eyes).mov(100, -130);
+  new Blob({borderColor:"#000000", borderWidth:4}).sca(1.2).pos(-50,-50, CENTER, CENTER, eyes);
+  new Blob({borderColor:"#000000", borderWidth:4}).sca(1.2).pos(120,-50, CENTER, CENTER, eyes);
+  new Blob({color:"#000000"}).sca(.8).pos(-50,-50, CENTER,CENTER, eyes);
+  new Blob({color:"#000000"}).sca(1.7).pos(120,-50, CENTER, CENTER, eyes);
 
   const nose = new Layer(350,220,"NOSE").pos(0,-40,CENTER,CENTER,head);
-  new Blob({points:[[0,-150,0,0,33.4,90.1,-46.3,103.2,"free"],[-5.9,70.1,0,0,-73.9,-3.9,73.9,3.9,"mirror"]], color:"#ea1988"}).pos(-10,-150,CENTER,TOP,nose).sca(.8).transform({onTop:false, visible:false});
+  new Blob({points:[[0,-150,0,0,33.4,90.1,-46.3,103.2,"free"],[-5.9,70.1,0,0,-73.9,-3.9,73.9,3.9,"mirror"]], color:"#ea1988"}).pos(40,-10,CENTER,TOP,nose).sca(.6).transform({onTop:false, visible:false});
 //   new Squiggle({color:dark, thickness:10, points:[[0,0,0,0,0,0,0,0],[37.5,33.3,0,0,0,0,0,0],[75,0,0,0,0,0,0,0],[112.5,33.3,0,0,0,0,0,0],[150,0,0,0,0,0,0,0],[187.5,33.3,0,0,0,0,0,0],[225,0,0,0,0,0,0,0],[262.5,33.3,0,0,0,0,0,0],[300,0,0,0,0,0,0,0]], 
 //             showControls:false}).transformPoints("scaleY", .5).rot(180).pos(0,40,CENTER,BOTTOM,nose); 
 
   const mouth = new Layer(250,120,"MOUTH").center(head).mov(0,-40);
-  new Blob({color: "#2789ff", points: [[-1.2,37.8,0,0,-50,0,50,0,"mirror"],[100,0,0,0,0,-50,0,50,"mirror"],[0,100,0,0,50,0,-50,0,"mirror"],[-100,0,0,0,0,50,0,-50,"mirror"]]}).sca(.5).pos(-10,-90,CENTER,TOP,mouth);
-//   new Squiggle().center(mouth);
+  new Blob({color: "#2789ff", points: [[-1.2,37.8,0,0,-50,0,50,0,"mirror"],[100,0,0,0,0,-50,0,50,"mirror"],[0,100,0,0,50,0,-50,0,"mirror"],[-100,0,0,0,0,50,0,-50,"mirror"]]}).sca(.25).pos(40,30,CENTER,TOP,mouth);
 
 
 
-    // page2.triangle = new Triangle(160,160,160,dark)
-    //     .alp(.8)
-    //     .hov(1)
-    //     .rot(90)
-    //     .center(page2);
+
         
     const pages = new Pages([
         {page:page1, swipe:[page2, page2, "help", "help"]}, 
@@ -130,7 +128,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         page1.setBounds(stageW, stageH);
         page1.backing.siz(stageW, stageH);
         // page1.triangle.loc(stageW*.3, stageH*.3);
-        page1.triangle.center();
+       maintitle.center();
         
         page2.setBounds(stageW, stageH);
         page2.backing.siz(stageW, stageH);
@@ -139,40 +137,37 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         
         pages.resize();        
     })
-        new Rectangle(stageW, 50, dark).addTo(page2);
-        new Label({text:"how do I look?", color:white}).sca(.7).alp(.7).pos(20,14);
-        new CheckBox({label:"LAYERS"}).pos(20, 12, RIGHT).change(e=>{
-            layers.visible = e.target.checked;
-    // the code below would hide the ghosts when the layers are hidden
-    // layers.loop(function (titleBar) {
-    //     if (!layers.visible || ghosts.checked) titleBar.layer.transformControls.toggleGhost(layers.visible);
-    // });
+        // TOP BAR
+    new Rectangle(stageW, 50, dark).addTo(page2);
+    new Label({text:"THE BALLON HEAD", color:white}).sca(.5).pos(20,9).addTo(page2);
+    new CheckBox({label:"LAYERS"}).pos(50, 20, RIGHT, page2).sca(2).change(e=>{
+    layers.visible = e.target.checked;
+    
     stage.update();
   });
-//   const ghosts = new CheckBox({label:"GHOSTS"}).pos(150, 12, RIGHT).change(e=>{
-//     layers.loop((titleBar)=>{
-//       titleBar.layer.transformControls.toggleGhost(e.target.checked);
-//     });
-//     stage.update();
-//   });
-//   let docked = true;
-//   new CheckBox({label:"DOCK"}).pos(300, 12, RIGHT).change(e=>{
-//     docked = !docked;
+  const ghosts = new CheckBox({label:"GHOSTS"}).pos(100, 20, RIGHT).sca(2).change(e=>{
+    layers.loop((titleBar)=>{
+      titleBar.layer.transformControls.toggleGhost(e.target.checked);
+    });
+    stage.update();
+  });
+  let docked = true;
+  new CheckBox({label:"DOCK"}).pos(150, 20, RIGHT).sca(2).change(e=>{
+    docked = !docked;
     layers.loop((titleBar)=>{
       var layer = titleBar.layer;
       if (docked) layer.titleBarPos(layer.titleBarStartX, layer.titleBarStartY);
       else layer.resetTitleBar();
       layer.titleBarDraggable = !docked;
-    // });
+    });
     stage.update();
   });
 
   new TransformManager([nose], "layertest2")
-    
 
-    
 
-    stage.update(); // this is needed to show any changes
+  stage.update(); // this is needed to show any changes
+
 
 }); // end of ready
 
