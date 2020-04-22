@@ -138,7 +138,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         pages.resize();        
     })
         // TOP BAR
-    new Rectangle(stageW, 50, dark).addTo(page2);
+    const topbar = new Rectangle(stageW, 50, dark).addTo(page2);
     new Label({text:"THE BALLON HEAD", color:white}).sca(.4).pos(5,9).addTo(page2);
     new CheckBox({label:"LAYERS"}).pos(30, 20, RIGHT, page2).sca(2).change(e=>{
     layers.visible = e.target.checked;
@@ -163,7 +163,31 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
     stage.update();
   });
 
-  new TransformManager([nose], "layertest2")
+
+  const label = new Label ({
+    text: "RESET",
+    color: black,
+    size: 12,
+    fontOptions: "bold"
+  });
+  
+  const button = new Button({
+  label:label,
+   width:60,
+   height:20,
+   backgroundColor:"#b6ff00",
+   rollBackgroundColor:"#2ffd2f",
+   corner:0
+});
+    button.center(page2).mov(-200,300,CENTER,TOP);
+    button.on("click", function(){
+     zgo("index.html");
+    
+    });
+
+  // new TransformManager([nose], "layertest2")
+
+  
 
 
   stage.update(); // this is needed to show any changes
