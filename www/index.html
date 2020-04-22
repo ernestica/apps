@@ -47,7 +47,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
     // put your code here (you can delete this sample code)
     const page1 = new Container(stageW,stageH);
     page1.backing = new Rectangle(page1.width, page1.height, white).addTo(page1);
-    const maintitle = asset('ballon.png').sca(.4).center(page1);
+    const maintitle = asset('ballon.png').sca(.8).center(page1);
     // page1.triangle = new Triangle(40,40,40,"#ff0092")
     //     .rot(90)
     //     .hov(1)
@@ -86,7 +86,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         }
     }
 
-  const head = new Layer(500, 500, "HEAD").sca(1).pos(0,-50,CENTER,BOTTOM,layers);
+  const head = new Layer(500, 500, "HEAD").sca(.8).pos(0,-50,CENTER,BOTTOM,content);
   new Blob({points:[[-9.7,-178,0,0,-30,0.6,31.4,-0.6,"mirror"],[88.6,-112.8,0,0,-13.3,-44.4,13.3,44.4],[68.3,-16.8,0,0,18.9,-17.9,-14.4,13.7,"mirror"],[28.8,31.5,0,0,5.8,-14.7,-12.7,32.3],[-5.8,90.8,0,0,34.4,0,-31.2,0,"mirror"],[-37.3,37.7,0,0,10.5,27.7,-6.3,-16.6],[-83.4,-5.8,0,0,17.3,15.3,-20,-17.7,"mirror"],[-105.7,-111.9,0,0,-14.8,45.3,14.8,-45.3]], color:"#2ffd2f"}).pos(50,-20,CENTER,CENTER, head).sca(1); // or we could apply transform to scale head independently of Layer scale
   new Blob({color:"#b7fe00", points:[[-9.7,-178,0,0,-30,0.6,31.4,-0.6,"mirror"],[88.6,-112.8,0,0,-13.3,-44.4,13.3,44.4],[68.3,-16.8,0,0,18.9,-17.9,-14.4,13.7,"mirror"],[28.8,31.5,0,0,5.8,-14.7,-12.7,32.3],[-5.8,90.8,0,0,34.4,0,-31.2,0,"mirror"],[-37.3,37.7,0,0,10.5,27.7,-6.3,-16.6],[-83.4,-5.8,0,0,17.3,15.3,-20,-17.7,"mirror"],[-105.7,-111.9,0,0,-14.8,45.3,14.8,-45.3]]}).sca(1).pos(50,-40,CENTER,CENTER,head).transform({onTop:false, visible:false});
 
@@ -97,7 +97,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
   new Blob({color:"#000000"}).sca(.6).pos(80,0, CENTER, CENTER, eyes);
 
   const nose = new Layer(350,220,"NOSE").pos(0,-40,CENTER,CENTER,head);
-  new Blob({points:[[0,-150,0,0,33.4,90.1,-46.3,103.2,"free"],[-5.9,70.1,0,0,-73.9,-3.9,73.9,3.9,"mirror"]], color:"#ea1988"}).pos(40,-10,CENTER,TOP,nose).sca(.4).transform({onTop:false, visible:false});
+  new Blob({points:[[0,-150,0,0,33.4,90.1,-46.3,103.2,"free"],[-5.9,70.1,0,0,-73.9,-3.9,73.9,3.9,"mirror"]], color:"#ea1988"}).pos(40,-10,CENTER,TOP,nose).sca(.3).transform({onTop:false, visible:false});
 //   new Squiggle({color:dark, thickness:10, points:[[0,0,0,0,0,0,0,0],[37.5,33.3,0,0,0,0,0,0],[75,0,0,0,0,0,0,0],[112.5,33.3,0,0,0,0,0,0],[150,0,0,0,0,0,0,0],[187.5,33.3,0,0,0,0,0,0],[225,0,0,0,0,0,0,0],[262.5,33.3,0,0,0,0,0,0],[300,0,0,0,0,0,0,0]], 
 //             showControls:false}).transformPoints("scaleY", .5).rot(180).pos(0,40,CENTER,BOTTOM,nose); 
 
